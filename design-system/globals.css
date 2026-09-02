@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Drogheda City Now — "Market & Quest"
+ * shadcn/ui CSS variables, in HSL triplets (no hsl() wrapper — Tailwind adds it).
+ * Light palette in :root, dark palette in .dark. Toggle by adding/removing
+ * the "dark" class on <html>, same as any shadcn project.
+ */
+@layer base {
+  :root {
+    --background: 40 35% 96%;        /* Market Ivory  #FAF6EE */
+    --foreground: 25 12% 12%;        /* Coal Ink      #241F1B */
+
+    --card: 45 55% 99%;              /* Surface       #FFFEFA */
+    --card-foreground: 25 12% 12%;
+
+    --popover: 45 55% 99%;
+    --popover-foreground: 25 12% 12%;
+
+    --primary: 189 45% 30%;          /* Boyne Teal    #2E6B78 */
+    --primary-foreground: 40 35% 97%;
+
+    --secondary: 33 78% 44%;         /* Quest Gold    #C97F17 */
+    --secondary-foreground: 25 40% 12%;
+
+    --accent: 340 73% 42%;           /* Stamp Pink    #C81955 */
+    --accent-foreground: 40 35% 97%;
+
+    --muted: 40 24% 90%;             /* Surface-2     #F2ECDF */
+    --muted-foreground: 30 15% 45%;  /* Fog Sand      #8A7A67 */
+
+    --destructive: 4 70% 50%;
+    --destructive-foreground: 40 35% 97%;
+
+    --border: 38 33% 84%;            /* #E4D9C6 */
+    --input: 38 33% 84%;
+    --ring: 189 45% 30%;
+
+    --radius: 0.875rem;              /* 14px base — see borderRadius scale in tailwind.config.ts */
+  }
+
+  .dark {
+    --background: 27 14% 10%;        /* #1B1714 */
+    --foreground: 42 38% 91%;        /* #F3ECDE */
+
+    --card: 26 13% 12%;              /* #242019 */
+    --card-foreground: 42 38% 91%;
+
+    --popover: 26 13% 12%;
+    --popover-foreground: 42 38% 91%;
+
+    --primary: 187 33% 56%;          /* #6FB2BC */
+    --primary-foreground: 27 14% 10%;
+
+    --secondary: 36 74% 61%;         /* #E7A94C */
+    --secondary-foreground: 27 30% 12%;
+
+    --accent: 337 74% 65%;           /* #E85C90 */
+    --accent-foreground: 27 14% 10%;
+
+    --muted: 28 12% 16%;             /* #2C271F */
+    --muted-foreground: 34 21% 60%;  /* #A2917C */
+
+    --destructive: 4 60% 55%;
+    --destructive-foreground: 42 38% 91%;
+
+    --border: 30 14% 20%;            /* #3B342A */
+    --input: 30 14% 20%;
+    --ring: 187 33% 56%;
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+  h1, h2, h3, h4 {
+    @apply font-heading;
+    text-wrap: balance;
+  }
+}
+
+/*
+ * Named text styles — apply one class, get face + weight + size + tracking
+ * + line-height + colour together. Keeps every screen pulling from the
+ * same scale instead of ad-hoc text-lg font-bold combinations.
+ */
+@layer utilities {
+  .text-display  { @apply font-heading font-semibold text-5xl md:text-6xl leading-[1.02] tracking-tight text-foreground; }
+  .text-h1       { @apply font-heading font-semibold text-3xl md:text-4xl leading-tight tracking-tight text-foreground; }
+  .text-h2       { @apply font-heading font-medium text-2xl leading-snug text-foreground; }
+  .text-h3       { @apply font-heading font-medium text-xl leading-snug text-foreground; }
+  .text-lead     { @apply font-body text-lg text-muted-foreground leading-relaxed max-w-prose; }
+  .text-body     { @apply font-body text-base leading-relaxed text-foreground; }
+  .text-small    { @apply font-body text-sm text-muted-foreground; }
+  .text-caption  { @apply font-body text-xs text-muted-foreground; }
+  .text-overline { @apply font-body text-xs font-bold uppercase tracking-[0.09em] text-primary; }
+  .text-stat     { @apply font-heading font-semibold text-3xl tabular-nums text-secondary; }
+  .text-button   { @apply font-heading font-semibold text-sm tracking-wide; }
+}
+
+/* Respect the OS-level motion preference across every custom + shadcn animation */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
