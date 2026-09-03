@@ -22,7 +22,7 @@ export function CategoryChips({ homePage, categories }: CategoryChipsProps) {
           {categories.map((category) => (
             <Chip
               key={category._id}
-              href={`/directory?category=${category.slug}`}
+              href={`/business-directory/${category.slug}`}
               label={category.name}
               count={category.count}
             />

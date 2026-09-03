@@ -1,0 +1,146 @@
+import {BasketIcon} from '@sanity/icons'
+import {defineArrayMember, defineField, defineType} from 'sanity'
+
+const ACCENT_OPTIONS = [
+  {title: 'Gold', value: '#F2A429'},
+  {title: 'Teal', value: '#1C8CA1'},
+  {title: 'Rust', value: '#C67139'},
+]
+
+export const business = defineType({
+  name: 'business',
+  title: 'Business',
+  type: 'document',
+  icon: BasketIcon,
+  groups: [
+    {name: 'hero', title: 'Hero', default: true},
+    {name: 'shops', title: 'Shops'},
+    {name: 'about', title: 'About'},
+    {name: 'sells', title: 'What they sell'},
+    {name: 'gallery', title: 'Gallery'},
+    {name: 'whyItMatters', title: 'Why it matters'},
+    {name: 'meta', title: 'Tags & SEO'},
+  ],
+  fields: [
+    defineField({name: 'name', title: 'Full name', type: 'string', group: 'hero', validation: (Rule) => Rule.required()}),
+    defineField({
+      name: 'displayName',
+      title: 'Display name',
+      type: 'string',
+      description: 'Short mark for the giant hero heading, e.g. "Tuites". Rendered uppercase automatically.',
+      group: 'hero',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      options: {source: 'name'},
+      group: 'hero',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({name: 'trade', title: 'Trade', type: 'string', description: 'e.g. "Butchers".', group: 'hero', validation: (Rule) => Rule.required()}),
+    defineField({
+      name: 'order',
+      title: 'Order',
+      type: 'number',
+      description: 'Sequences the "No. 0X of the trades" plate number and prev/next navigation.',
+      group: 'hero',
+      validation: (Rule) => Rule.required().integer().positive(),
+    }),
+    defineField({
+      name: 'accentColor',
+      title: 'Accent colour',
+      type: 'string',
+      options: {list: ACCENT_OPTIONS},
+      initialValue: '#F2A429',
+      group: 'hero',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({name: 'tagline', title: 'Tagline', type: 'text', rows: 2, group: 'hero'}),
+    defineField({name: 'isMember', title: 'DCN member', type: 'boolean', initialValue: true, group: 'hero'}),
+    defineField({
+      name: 'badges',
+      title: 'Badges',
+      type: 'array',
+      of: [defineArrayMember({type: 'string'})],
+      description: 'Outline pills, e.g. "Family-owned", "Award-winning".',
+      group: 'hero',
+    }),
+    defineField({name: 'listedDate', title: 'Listed date', type: 'date', group: 'hero'}),
+    defineField({name: 'author', title: 'Author', type: 'reference', to: [{type: 'author'}], group: 'hero'}),
+    defineField({name: 'heroImage', title: 'Banner image', type: 'image', options: {hotspot: true}, group: 'hero'}),
+    defineField({
+      name: 'categories',
+      title: 'Categories',
+      type: 'array',
+      of: [defineArrayMember({type: 'reference', to: [{type: 'category'}]})],
+      group: 'hero',
+    }),
+    defineField({
+      name: 'areaLinks',
+      title: 'Area links',
+      type: 'array',
+      of: [defineArrayMember({type: 'link'})],
+      description: 'Eyebrow / sidebar area links, e.g. "Saint Laurence Street".',
+      group: 'hero',
+    }),
+
+    defineField({
+      name: 'locations',
+      title: 'Shop locations',
+      type: 'array',
+      of: [defineArrayMember({type: 'businessLocation'})],
+      group: 'shops',
+    }),
+
+    defineField({name: 'aboutTitle', title: 'Title', type: 'string', group: 'about'}),
+    defineField({name: 'aboutBody', title: 'Body', type: 'array', of: [{type: 'block'}], group: 'about'}),
+
+    defineField({name: 'sellsHeading', title: 'Heading', type: 'string', initialValue: 'What they sell', group: 'sells'}),
+    defineField({name: 'sellsSubheading', title: 'Subheading', type: 'string', group: 'sells'}),
+    defineField({
+      name: 'sells',
+      title: 'Items',
+      type: 'array',
+      of: [defineArrayMember({type: 'sellItem'})],
+      group: 'sells',
+    }),
+    defineField({name: 'sellsFooterTitle', title: '"Ask at the counter" title', type: 'string', group: 'sells'}),
+    defineField({name: 'sellsFooterBody', title: '"Ask at the counter" body', type: 'string', group: 'sells'}),
+
+    defineField({
+      name: 'galleryImages',
+      title: 'Gallery images',
+      type: 'array',
+      of: [defineArrayMember({type: 'image', options: {hotspot: true}})],
+      group: 'gallery',
+    }),
+
+    defineField({name: 'whyItMattersEyebrow', title: 'Eyebrow', type: 'string', initialValue: 'Why it matters for Drogheda', group: 'whyItMatters'}),
+    defineField({name: 'whyItMattersTitle', title: 'Title', type: 'string', group: 'whyItMatters'}),
+    defineField({name: 'whyItMattersBody', title: 'Body', type: 'array', of: [{type: 'block'}], group: 'whyItMatters'}),
+    defineField({name: 'whyItMattersClosingBold', title: 'Closing paragraph — bold lead-in', type: 'string', group: 'whyItMatters'}),
+    defineField({name: 'whyItMattersClosingText', title: 'Closing paragraph — text', type: 'text', rows: 2, group: 'whyItMatters'}),
+
+    defineField({
+      name: 'tickerText',
+      title: 'Ticker text',
+      type: 'string',
+      description: 'The repeating marquee strip text.',
+      group: 'meta',
+    }),
+    defineField({
+      name: 'tags',
+      title: 'Tags',
+      type: 'array',
+      of: [defineArrayMember({type: 'link'})],
+      group: 'meta',
+    }),
+    defineField({name: 'seo', title: 'SEO', type: 'seo', group: 'meta'}),
+  ],
+  orderings: [{name: 'orderAsc', title: 'Order', by: [{field: 'order', direction: 'asc'}]}],
+  preview: {
+    select: {title: 'name', subtitle: 'trade', media: 'heroImage'},
+  },
+})

@@ -88,3 +88,49 @@ export const homeQuery = groq`{
     publishedAt
   }
 }`;
+
+export const businessSlugsQuery = groq`*[_type == "business" && defined(slug.current)].slug.current`;
+
+export const businessBySlugQuery = groq`{
+  "business": *[_type == "business" && slug.current == $slug][0]{
+    name,
+    displayName,
+    "slug": slug.current,
+    trade,
+    order,
+    accentColor,
+    tagline,
+    isMember,
+    badges,
+    listedDate,
+    "author": author->{name},
+    heroImage,
+    "categories": categories[]->{_id, name, "slug": slug.current},
+    areaLinks[] ${linkProjection},
+    locations[]{_key, label, name, address, phone, tel, openingHours},
+    aboutTitle,
+    aboutBody,
+    sellsHeading,
+    sellsSubheading,
+    sells[]{_key, title, body},
+    sellsFooterTitle,
+    sellsFooterBody,
+    galleryImages,
+    whyItMattersEyebrow,
+    whyItMattersTitle,
+    whyItMattersBody,
+    whyItMattersClosingBold,
+    whyItMattersClosingText,
+    tickerText,
+    tags[] ${linkProjection},
+    seo ${seoProjection}
+  },
+  "prevBusiness": *[_type == "business" && order < *[_type == "business" && slug.current == $slug][0].order] | order(order desc)[0]{
+    name,
+    "slug": slug.current
+  },
+  "nextBusiness": *[_type == "business" && order > *[_type == "business" && slug.current == $slug][0].order] | order(order asc)[0]{
+    name,
+    "slug": slug.current
+  }
+}`;
