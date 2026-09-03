@@ -12,6 +12,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Separate apps with their own tooling, not part of this Next.js app:
+    "studio/**",
+    "design-system/**",
   ]),
 ]);
 
