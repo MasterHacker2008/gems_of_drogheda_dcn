@@ -1,4 +1,3 @@
-import {BasketIcon} from '@sanity/icons'
 import {defineArrayMember, defineField, defineType} from 'sanity'
 
 const ACCENT_OPTIONS = [
@@ -11,7 +10,6 @@ export const business = defineType({
   name: 'business',
   title: 'Business',
   type: 'document',
-  icon: BasketIcon,
   groups: [
     {name: 'hero', title: 'Hero', default: true},
     {name: 'shops', title: 'Shops'},
