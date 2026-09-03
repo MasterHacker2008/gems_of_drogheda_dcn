@@ -15,12 +15,12 @@ in the "Market & Quest" artifact. Two files carry the whole system —
    resolve — with `next/font`:
 
    ```ts
-   import { Fredoka, Figtree } from "next/font/google";
+   import { Public_Sans, Figtree } from "next/font/google";
 
-   const fredoka = Fredoka({ subsets: ["latin"], weight: ["400","500","600","700"], variable: "--font-fredoka" });
+   const publicSans = Public_Sans({ subsets: ["latin"], weight: ["500","600","700","800"], variable: "--font-public-sans" });
    const figtree = Figtree({ subsets: ["latin"], weight: ["400","500","600","700","800"], variable: "--font-figtree" });
 
-   // on <html className={`${fredoka.variable} ${figtree.variable}`}>
+   // on <html className={`${publicSans.variable} ${figtree.variable}`}>
    ```
 5. Every `npx shadcn add <component>` from here on inherits the palette
    automatically — the generated component code reads `bg-primary`,
@@ -88,17 +88,23 @@ size/weight/tracking per instance.
 
 | Class | Face | Role |
 |---|---|---|
-| `.text-display` | Fredoka 600 | Hero headline only |
-| `.text-h1` | Fredoka 600 | Page / major section title |
-| `.text-h2` | Fredoka 500 | Subsection title |
-| `.text-h3` | Fredoka 500 | Card title (business name, post title) |
+| `.text-display` | Public Sans 600 | Hero headline only |
+| `.text-h1` | Public Sans 600 | Page / major section title |
+| `.text-h2` | Public Sans 500 | Subsection title |
+| `.text-h3` | Public Sans 500 | Card title (business name, post title) |
 | `.text-lead` | Figtree 400 | Intro paragraph under a heading |
 | `.text-body` | Figtree 400 | Default running text |
 | `.text-small` | Figtree 400 | Metadata — dates, byline, counts |
 | `.text-caption` | Figtree 400 | Fine print, form hints |
 | `.text-overline` | Figtree 700 | Uppercase eyebrow label above a heading |
-| `.text-stat` | Fredoka 600 | Big numbers (team count, prize pot) — always `tabular-nums` |
-| `.text-button` | Fredoka 600 | Button/CTA label text |
+| `.text-stat` | Public Sans 700 | Big numbers (team count, prize pot) — always `tabular-nums` |
+| `.text-button` | Public Sans 700 | Button/CTA label text |
+
+Swapped from Fredoka: its rounded, bubbly letterforms read as playful/
+childish rather than the civic trust this campaign needs. Public Sans
+is the U.S. Web Design System's own typeface — built specifically for
+government/civic-grade legibility and trust — while staying sans-serif
+and warm enough to sit next to Figtree without feeling cold.
 
 ## shadcn component recipes
 
@@ -114,10 +120,13 @@ size/weight/tracking per instance.
   - `outline` / `ghost` unchanged from shadcn, they already inherit
     `border-border` / `text-foreground` correctly.
 
-- **Badge** (`components/ui/badge.tsx`) — add a `stamp` variant: `bg-accent
-  text-accent-foreground rounded-stamp px-2.5 py-1 rotate-6
-  animate-stamp-pop shadow-xs`. Use only for "Member", "New", "Featured" —
-  one per card, top-right corner, never as a section background.
+- **Badge** (`components/ui/badge.tsx`) — add a `gem` variant: a pill,
+  `bg-accent/10 text-accent border border-accent/35 rounded-full px-2.5
+  py-1`, paired with a small faceted-gem icon. This is the directory's
+  status mark — every business on the trail carries a "Drogheda Gem"
+  badge, tying a listing back to the Gems of Drogheda quest rather than
+  reading as a generic "Member" sticker. One per card, top-right corner,
+  never as a section background.
 
 - **Card** — `rounded-lg border border-border bg-card shadow-card
   transition-[transform,box-shadow] duration-200 hover:shadow-card-hover
@@ -158,7 +167,7 @@ decorative-only:
 
 | Name | Class | Duration | Trigger | Why |
 |---|---|---|---|---|
-| Stamp pop | `animate-stamp-pop` | 0.45s spring | badge mount | "Member"/"New" badges land with a stamped-down feel, not a fade |
+| Gem pop | `animate-stamp-pop` | 0.45s spring | badge mount | the Drogheda Gem status badge lands with a confident pop, not a fade |
 | Card lift | `hover:-translate-y-1 hover:shadow-card-hover` | 0.2s ease-out | hover/focus | every card in the directory/blog grid, signals "clickable" without a border colour change |
 | Gold pulse | `animate-pulse-gold` | 2.4s loop | first-viewport Register CTA only | draws the eye to the one action that matters most (event sign-up) without being applied everywhere |
 | Fade up | `animate-fade-up` | 0.5s ease-out | scroll-into-view (IntersectionObserver), staggered ~60ms per sibling | directory grids and stat rows arrive as a set, not a jump-cut |

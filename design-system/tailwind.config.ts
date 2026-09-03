@@ -20,8 +20,8 @@ const config: Config = {
     },
     extend: {
       fontFamily: {
-        // Heading: Fredoka (warm, rounded, distinct display face)
-        heading: ["var(--font-fredoka)", "ui-rounded", "system-ui", "sans-serif"],
+        // Heading: Public Sans (trustworthy, civic-grade — USWDS's own typeface — distinct at 700/800)
+        heading: ["var(--font-public-sans)", "ui-sans-serif", "system-ui", "sans-serif"],
         // Body/UI: Figtree (warm humanist sans)
         body: ["var(--font-figtree)", "ui-sans-serif", "system-ui", "sans-serif"],
       },

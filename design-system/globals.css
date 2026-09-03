@@ -10,65 +10,65 @@
  */
 @layer base {
   :root {
-    --background: 40 35% 96%;        /* Market Ivory  #FAF6EE */
-    --foreground: 25 12% 12%;        /* Coal Ink      #241F1B */
+    --background: 42 60% 97%;        /* Market Ivory (brighter) #FFF9EE */
+    --foreground: 30 10% 12%;        /* Coal Ink               #221F1A */
 
-    --card: 45 55% 99%;              /* Surface       #FFFEFA */
-    --card-foreground: 25 12% 12%;
+    --card: 40 60% 99%;              /* Surface                #FFFFFF */
+    --card-foreground: 30 10% 12%;
 
-    --popover: 45 55% 99%;
-    --popover-foreground: 25 12% 12%;
+    --popover: 40 60% 99%;
+    --popover-foreground: 30 10% 12%;
 
-    --primary: 189 45% 30%;          /* Boyne Teal    #2E6B78 */
-    --primary-foreground: 40 35% 97%;
+    --primary: 189 70% 37%;          /* Boyne Teal (brighter)  #1C8CA1 */
+    --primary-foreground: 42 60% 97%;
 
-    --secondary: 33 78% 44%;         /* Quest Gold    #C97F17 */
-    --secondary-foreground: 25 40% 12%;
+    --secondary: 37 89% 55%;         /* Quest Gold (brighter)  #F2A429 */
+    --secondary-foreground: 35 89% 14%;
 
-    --accent: 340 73% 42%;           /* Stamp Pink    #C81955 */
-    --accent-foreground: 40 35% 97%;
+    --accent: 336 78% 50%;           /* Gem Pink (brighter)    #E31C6D */
+    --accent-foreground: 42 60% 97%;
 
-    --muted: 40 24% 90%;             /* Surface-2     #F2ECDF */
-    --muted-foreground: 30 15% 45%;  /* Fog Sand      #8A7A67 */
+    --muted: 40 40% 91%;             /* Surface-2              #F5EEDD */
+    --muted-foreground: 32 20% 48%;  /* Fog Sand               #8C7F6C */
 
     --destructive: 4 70% 50%;
-    --destructive-foreground: 40 35% 97%;
+    --destructive-foreground: 42 60% 97%;
 
-    --border: 38 33% 84%;            /* #E4D9C6 */
-    --input: 38 33% 84%;
-    --ring: 189 45% 30%;
+    --border: 40 45% 87%;            /* #EEE3CF */
+    --input: 40 45% 87%;
+    --ring: 189 70% 37%;
 
     --radius: 0.875rem;              /* 14px base — see borderRadius scale in tailwind.config.ts */
   }
 
   .dark {
-    --background: 27 14% 10%;        /* #1B1714 */
-    --foreground: 42 38% 91%;        /* #F3ECDE */
+    --background: 25 15% 9%;         /* #1B1613 */
+    --foreground: 42 40% 93%;        /* #F5EEE0 */
 
-    --card: 26 13% 12%;              /* #242019 */
-    --card-foreground: 42 38% 91%;
+    --card: 24 14% 11%;              /* #241F1A */
+    --card-foreground: 42 40% 93%;
 
-    --popover: 26 13% 12%;
-    --popover-foreground: 42 38% 91%;
+    --popover: 24 14% 11%;
+    --popover-foreground: 42 40% 93%;
 
-    --primary: 187 33% 56%;          /* #6FB2BC */
-    --primary-foreground: 27 14% 10%;
+    --primary: 189 55% 60%;          /* #62BBCF */
+    --primary-foreground: 25 15% 9%;
 
-    --secondary: 36 74% 61%;         /* #E7A94C */
-    --secondary-foreground: 27 30% 12%;
+    --secondary: 37 85% 65%;         /* #F1B759 */
+    --secondary-foreground: 25 30% 10%;
 
-    --accent: 337 74% 65%;           /* #E85C90 */
-    --accent-foreground: 27 14% 10%;
+    --accent: 336 75% 68%;           /* #EC6FA0 */
+    --accent-foreground: 25 15% 9%;
 
-    --muted: 28 12% 16%;             /* #2C271F */
-    --muted-foreground: 34 21% 60%;  /* #A2917C */
+    --muted: 26 12% 15%;             /* #2B241E */
+    --muted-foreground: 34 22% 62%;  /* #A6957F */
 
     --destructive: 4 60% 55%;
-    --destructive-foreground: 42 38% 91%;
+    --destructive-foreground: 42 40% 93%;
 
-    --border: 30 14% 20%;            /* #3B342A */
-    --input: 30 14% 20%;
-    --ring: 187 33% 56%;
+    --border: 28 14% 19%;            /* #3B332A */
+    --input: 28 14% 19%;
+    --ring: 189 55% 60%;
   }
 
   * {
