@@ -113,3 +113,80 @@ export type HomeQueryResult = {
   events: EventItem[];
   posts: Post[];
 };
+
+export type PortableTextBlock = {
+  _type: "block";
+  _key: string;
+  [key: string]: unknown;
+};
+
+export type BusinessLocation = {
+  _key: string;
+  label: string;
+  name: string;
+  address: string;
+  phone: string;
+  tel: string;
+  openingHours?: string[];
+};
+
+export type SellItem = {
+  _key: string;
+  title: string;
+  body: string;
+};
+
+export type BusinessCategory = {
+  _id: string;
+  name: string;
+  slug: string;
+};
+
+export type BusinessAuthor = {
+  name: string;
+};
+
+export type Business = {
+  name: string;
+  displayName: string;
+  slug: string;
+  trade: string;
+  order: number;
+  accentColor: string;
+  tagline?: string;
+  isMember?: boolean;
+  badges?: string[];
+  listedDate?: string;
+  author?: BusinessAuthor;
+  heroImage?: SanityImage;
+  categories?: BusinessCategory[];
+  areaLinks?: Link[];
+  locations?: BusinessLocation[];
+  aboutTitle?: string;
+  aboutBody?: PortableTextBlock[];
+  sellsHeading?: string;
+  sellsSubheading?: string;
+  sells?: SellItem[];
+  sellsFooterTitle?: string;
+  sellsFooterBody?: string;
+  galleryImages?: SanityImage[];
+  whyItMattersEyebrow?: string;
+  whyItMattersTitle?: string;
+  whyItMattersBody?: PortableTextBlock[];
+  whyItMattersClosingBold?: string;
+  whyItMattersClosingText?: string;
+  tickerText?: string;
+  tags?: Link[];
+  seo?: Seo;
+};
+
+export type BusinessNeighbor = {
+  name: string;
+  slug: string;
+};
+
+export type BusinessBySlugResult = {
+  business: Business | null;
+  prevBusiness: BusinessNeighbor | null;
+  nextBusiness: BusinessNeighbor | null;
+};

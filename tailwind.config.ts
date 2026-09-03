@@ -126,6 +126,16 @@ const config: Config = {
           from: { transform: "translateX(0)" },
           to: { transform: "translateX(-50%)" },
         },
+        "tp-sheen": {
+          "0%, 100%": { opacity: "0" },
+          "46%": { opacity: "0" },
+          "55%": { opacity: "1" },
+          "72%": { opacity: "0" },
+        },
+        "tp-turn": {
+          from: { transform: "rotate(0deg)" },
+          to: { transform: "rotate(360deg)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -138,6 +148,8 @@ const config: Config = {
         "halo-breathe": "halo-breathe 12s ease-in-out infinite",
         sheen: "sheen 11s ease-in-out 1s infinite",
         ticker: "ticker 42s linear infinite",
+        "tp-sheen": "tp-sheen 9s ease-in-out 1.4s infinite",
+        "tp-turn": "tp-turn 90s linear infinite",
       },
       transitionTimingFunction: {
         spring: "cubic-bezier(.34,1.56,.64,1)",
