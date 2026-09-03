@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import tailwindcssAnimate from "tailwindcss-animate";
 
 /**
  * Drogheda City Now — "Market & Quest" design system
@@ -103,6 +104,38 @@ const config: Config = {
           "0%": { opacity: "0", transform: "translateY(4px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
+        "gem-drift": {
+          "0%, 100%": { transform: "translate3d(0,0,0) rotate(0deg)" },
+          "33%": { transform: "translate3d(6px,-16px,0) rotate(5deg)" },
+          "66%": { transform: "translate3d(-7px,-8px,0) rotate(-4deg)" },
+        },
+        "gem-turn": {
+          "0%": { transform: "rotate(0deg) scale(1)" },
+          "50%": { transform: "rotate(180deg) scale(1.04)" },
+          "100%": { transform: "rotate(360deg) scale(1)" },
+        },
+        "halo-breathe": {
+          "0%, 100%": { transform: "scale(1)", opacity: ".5" },
+          "50%": { transform: "scale(1.12)", opacity: ".85" },
+        },
+        sheen: {
+          "0%": { transform: "translateX(-140%) skewX(-16deg)" },
+          "100%": { transform: "translateX(280%) skewX(-16deg)" },
+        },
+        ticker: {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(-50%)" },
+        },
+        "tp-sheen": {
+          "0%, 100%": { opacity: "0" },
+          "46%": { opacity: "0" },
+          "55%": { opacity: "1" },
+          "72%": { opacity: "0" },
+        },
+        "tp-turn": {
+          from: { transform: "rotate(0deg)" },
+          to: { transform: "rotate(360deg)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -110,13 +143,20 @@ const config: Config = {
         "stamp-pop": "stamp-pop .45s cubic-bezier(.34,1.56,.64,1) both",
         "pulse-gold": "pulse-gold 2.4s cubic-bezier(.4,0,.6,1) infinite",
         "fade-up": "fade-up .5s ease-out both",
+        "gem-drift": "gem-drift 11s ease-in-out infinite",
+        "gem-turn": "gem-turn 60s linear infinite",
+        "halo-breathe": "halo-breathe 12s ease-in-out infinite",
+        sheen: "sheen 11s ease-in-out 1s infinite",
+        ticker: "ticker 42s linear infinite",
+        "tp-sheen": "tp-sheen 9s ease-in-out 1.4s infinite",
+        "tp-turn": "tp-turn 90s linear infinite",
       },
       transitionTimingFunction: {
         spring: "cubic-bezier(.34,1.56,.64,1)",
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [tailwindcssAnimate],
 };
 
 export default config;
