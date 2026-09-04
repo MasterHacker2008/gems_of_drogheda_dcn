@@ -1,3 +1,9 @@
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import type { EventFaqItem } from "@/lib/sanity/types";
 
 type EventFaqsProps = {
@@ -15,19 +21,18 @@ export function EventFaqs({ faqs }: EventFaqsProps) {
         </h2>
         <span className="text-base text-muted-foreground">The questions we get asked most</span>
       </div>
-      <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-4">
-        {faqs.map((faq, i) => (
-          <div
-            key={faq._key}
-            className={`flex flex-col gap-2 rounded-2xl border p-6 transition-colors duration-150 hover:border-primary ${
-              i % 2 ? "border-[#C9DEDD] bg-[#E8F1F0]" : "border-border bg-background"
-            }`}
-          >
-            <span className="font-heading text-lg font-semibold tracking-tight text-foreground">{faq.q}</span>
-            <span className="text-[15px] leading-relaxed text-muted-foreground">{faq.a}</span>
-          </div>
+      <Accordion type="single" collapsible className="mx-auto w-full max-w-3xl">
+        {faqs.map((faq) => (
+          <AccordionItem key={faq._key} value={faq._key} className="border-b border-border">
+            <AccordionTrigger className="py-5 text-left font-heading text-lg font-semibold tracking-tight text-foreground hover:no-underline">
+              {faq.q}
+            </AccordionTrigger>
+            <AccordionContent className="text-[15px] leading-relaxed text-muted-foreground">
+              {faq.a}
+            </AccordionContent>
+          </AccordionItem>
         ))}
-      </div>
+      </Accordion>
     </section>
   );
 }
