@@ -1,4 +1,4 @@
-import {defineField, defineType} from 'sanity'
+import {defineArrayMember, defineField, defineType} from 'sanity'
 
 export const post = defineType({
   name: 'post',
@@ -20,7 +20,14 @@ export const post = defineType({
       options: {hotspot: true},
       validation: (Rule) => Rule.required(),
     }),
-    defineField({name: 'excerpt', title: 'Excerpt', type: 'text', rows: 3, validation: (Rule) => Rule.required()}),
+    defineField({
+      name: 'excerpt',
+      title: 'Excerpt',
+      type: 'text',
+      rows: 3,
+      description: 'Used as the card teaser text and as the article page subtitle.',
+      validation: (Rule) => Rule.required(),
+    }),
     defineField({
       name: 'category',
       title: 'Category label',
@@ -31,11 +38,29 @@ export const post = defineType({
     defineField({name: 'publishedAt', title: 'Published at', type: 'datetime', validation: (Rule) => Rule.required()}),
     defineField({name: 'author', title: 'Author', type: 'reference', to: [{type: 'author'}]}),
     defineField({
+      name: 'relatedBusiness',
+      title: 'Related business',
+      type: 'reference',
+      to: [{type: 'business'}],
+      description: 'Optional — set this for gem-profile articles to show the "this gem" card, gem badge, and nearby-on-the-trail links. Leave unset for general articles.',
+    }),
+    defineField({
+      name: 'tags',
+      title: 'Tags',
+      type: 'array',
+      of: [defineArrayMember({type: 'link'})],
+      description: 'The "Filed under" row on the article page.',
+    }),
+    defineField({
       name: 'body',
       title: 'Body',
       type: 'array',
-      of: [{type: 'block'}],
-      description: 'Full post content, for the future post detail page.',
+      of: [
+        defineArrayMember({type: 'block'}),
+        defineArrayMember({type: 'calloutBox'}),
+        defineArrayMember({type: 'statGrid'}),
+      ],
+      description: 'Full post content. Use the Heading 2 / Quote block styles for section headings and pull-quotes, and insert Callout box / Stat grid blocks for the dark riddle-style callouts and fact grids.',
     }),
     defineField({name: 'seo', title: 'SEO', type: 'seo'}),
   ],

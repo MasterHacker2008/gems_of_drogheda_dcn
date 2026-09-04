@@ -229,6 +229,74 @@ export type BlogPageResult = {
   editorsPicks: Post[];
 };
 
+export type PostAuthor = {
+  name: string;
+  bio?: string;
+  avatar?: SanityImage;
+};
+
+export type CalloutBoxBlock = {
+  _type: "calloutBox";
+  _key: string;
+  eyebrow?: string;
+  text: string;
+  footerText?: string;
+  ctaLabel?: string;
+  ctaHref?: string;
+};
+
+export type StatGridBlock = {
+  _type: "statGrid";
+  _key: string;
+  stats: Stat[];
+};
+
+export type ArticleBodyBlock = PortableTextBlock | CalloutBoxBlock | StatGridBlock;
+
+export type ArticleRelatedBusiness = {
+  name: string;
+  slug: string;
+  trade: string;
+  order: number;
+  avatarImage?: SanityImage;
+  heroImage?: SanityImage;
+  areaLinks?: Link;
+  followerCount?: number;
+  questVisitCount?: number;
+  categories?: BusinessCategory[];
+};
+
+export type NearbyBusiness = {
+  name: string;
+  slug: string;
+  trade: string;
+};
+
+export type Article = {
+  title: string;
+  slug: string;
+  mainImage: SanityImage;
+  excerpt: string;
+  category?: string;
+  readTimeMinutes?: number;
+  publishedAt: string;
+  author?: PostAuthor;
+  relatedBusiness?: ArticleRelatedBusiness;
+  tags?: Link[];
+  body?: ArticleBodyBlock[];
+  seo?: Seo;
+};
+
+export type ArticlePageResult = {
+  siteSettings: SiteSettings | null;
+  blogSettings: BlogSettings | null;
+  post: Article | null;
+  nearbyBusinesses: NearbyBusiness[];
+  moreStories: Post[];
+  totalPostCount: number;
+  authorPostCount: number;
+};
+
 export type DirectorySettings = {
   kicker?: string;
   headline?: string;
