@@ -42,8 +42,17 @@ not hosting a form or any live gameplay/tracking itself. Anything
 "gamified" on the site (the Gem Case, a shard puzzle, etc.) is an
 illustration or a light marketing widget, never a live tracker of real
 progress, since the site has no visibility into what's happening in the
-app. A Quest edition page needs **two separate participant lists** — "Visit
+app. The event page needs **two separate participant lists** — "Visit
 in person" vs. "Solve online" — per the confirmed content model.
+
+**Latest revision — the Quest is a once-off event, not a section.** Drop
+the dedicated `/quest` hub and `/quest/past` archive entirely. The Quest
+lives as a single entry at `/events/[quest-slug]`, using the same event
+detail template every other event uses — with quest-specific modules
+(ActionBound CTA, prize pool, the two participant lists, the illustrative
+trail map, and a recap module once status = Past) layered on top of that
+shared template rather than a bespoke page. This supersedes the earlier
+"own top-level section, deliberately not under /events" framing.
 
 ## 2. Design system already locked in — match this pixel-perfectly
 
@@ -188,9 +197,12 @@ come first, the Quest/gem identity work is concentrated in step 4:
    featured grid, blog preview) instead of mocked in isolation. The
    existing homepage canvas (link above) is a first pass worth revisiting
    once 1–2 exist, not a final.
-4. **Quest hub + edition page (`/quest`, `/quest/[edition-slug]`)** —
-   including the two-list (in-person/online) pattern. This is where the
-   gem/diamond logo, vector system, Gem Case, and trail map (section 5)
-   actually earn their keep — build the identity work here, not earlier.
+4. **Event / Quest template (`/events/[slug]`)** — one shared event detail
+   template, with quest-specific modules toggled on for the Quest event
+   itself: ActionBound CTA, prize pool, the two-list (in-person/online)
+   pattern, the illustrative trail map, and a recap module for once it's
+   Past. This is where the gem/diamond logo, vector system, and trail map
+   (section 5) actually earn their keep — build the identity work here, not
+   earlier, and not as a bespoke page (there's no separate Quest hub).
 5. **Join (`/join`)** — pricing tiers table + signup form. A new page type;
    nothing to reuse from DCN's campaign pages, which never carried pricing.
