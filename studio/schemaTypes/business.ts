@@ -6,6 +6,12 @@ const ACCENT_OPTIONS = [
   {title: 'Rust', value: '#C67139'},
 ]
 
+const TIER_OPTIONS = [
+  {title: 'Gem verified', value: 'gem-verified'},
+  {title: 'Campaign sponsor', value: 'campaign-sponsor'},
+  {title: 'Directory listed', value: 'directory-listed'},
+]
+
 export const business = defineType({
   name: 'business',
   title: 'Business',
@@ -56,7 +62,57 @@ export const business = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({name: 'tagline', title: 'Tagline', type: 'text', rows: 2, group: 'hero'}),
+    defineField({
+      name: 'cardBlurb',
+      title: 'Directory card blurb',
+      type: 'text',
+      rows: 2,
+      description: 'A short, punchy one-liner for the directory listing card. Falls back to Tagline when unset.',
+      group: 'hero',
+    }),
     defineField({name: 'isMember', title: 'DCN member', type: 'boolean', initialValue: true, group: 'hero'}),
+    defineField({
+      name: 'tier',
+      title: 'Directory tier',
+      type: 'string',
+      description: 'Drives the badge on the directory listing card — independent of "DCN member" above.',
+      options: {list: TIER_OPTIONS},
+      initialValue: 'gem-verified',
+      group: 'hero',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'avatarImage',
+      title: 'Avatar image',
+      type: 'image',
+      options: {hotspot: true},
+      description: 'Small square avatar for the directory card. Falls back to initials when unset.',
+      group: 'hero',
+    }),
+    defineField({
+      name: 'followerCount',
+      title: 'Follower count',
+      type: 'number',
+      description: 'Editorial placeholder stat for the directory card, pending real social/analytics integration.',
+      group: 'hero',
+      validation: (Rule) => Rule.min(0),
+    }),
+    defineField({
+      name: 'questVisitCount',
+      title: 'Quest visit count',
+      type: 'number',
+      description: 'Editorial placeholder stat for the directory card.',
+      group: 'hero',
+      validation: (Rule) => Rule.min(0),
+    }),
+    defineField({
+      name: 'journalFeatureCount',
+      title: 'Journal feature count',
+      type: 'number',
+      description: 'Editorial placeholder stat for the directory card.',
+      group: 'hero',
+      validation: (Rule) => Rule.min(0),
+    }),
     defineField({
       name: 'badges',
       title: 'Badges',

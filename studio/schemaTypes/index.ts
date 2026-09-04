@@ -2,6 +2,7 @@ import {author} from './author'
 import {blogSettings} from './blogSettings'
 import {business} from './business'
 import {category} from './category'
+import {directorySettings} from './directorySettings'
 import {event} from './event'
 import {homePage} from './homePage'
 import {businessLocation} from './objects/businessLocation'
@@ -21,6 +22,7 @@ export const schemaTypes = [
   siteSettings,
   homePage,
   blogSettings,
+  directorySettings,
   // collections
   category,
   event,
