@@ -13,6 +13,23 @@ const postProjection = groq`{
   publishedAt,
   "author": author->{name}
 }`;
+const directoryBusinessProjection = groq`{
+  name,
+  "slug": slug.current,
+  trade,
+  tier,
+  order,
+  tagline,
+  cardBlurb,
+  avatarImage,
+  heroImage,
+  areaLinks[0] ${linkProjection},
+  "categories": categories[]->{_id, name, "slug": slug.current},
+  badges,
+  followerCount,
+  questVisitCount,
+  journalFeatureCount
+}`;
 
 export const siteSettingsQuery = groq`*[_type == "siteSettings"][0]{
   siteTitle,
@@ -88,7 +105,8 @@ export const homeQuery = groq`{
     date,
     detail
   },
-  "posts": *[_type == "post"] | order(publishedAt desc)[0...3] ${postProjection}
+  "posts": *[_type == "post"] | order(publishedAt desc)[0...3] ${postProjection},
+  "featuredBusinesses": *[_type == "business" && tier != "directory-listed"] | order(order asc)[0...4] ${directoryBusinessProjection}
 }`;
 
 export const blogPageQuery = groq`{
@@ -312,23 +330,7 @@ export const directoryPageQuery = groq`{
     registerInterestCtaLabel,
     seo ${seoProjection}
   },
-  "businesses": *[_type == "business"] | order(order asc){
-    name,
-    "slug": slug.current,
-    trade,
-    tier,
-    order,
-    tagline,
-    cardBlurb,
-    avatarImage,
-    heroImage,
-    areaLinks[0] ${linkProjection},
-    "categories": categories[]->{_id, name, "slug": slug.current},
-    badges,
-    followerCount,
-    questVisitCount,
-    journalFeatureCount
-  },
+  "businesses": *[_type == "business"] | order(order asc) ${directoryBusinessProjection},
   "categories": *[_type == "category"] | order(name asc){
     _id,
     name,
