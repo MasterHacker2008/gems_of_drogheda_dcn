@@ -1,4 +1,5 @@
 import {author} from './author'
+import {blogSettings} from './blogSettings'
 import {business} from './business'
 import {category} from './category'
 import {event} from './event'
@@ -19,6 +20,7 @@ export const schemaTypes = [
   // singletons
   siteSettings,
   homePage,
+  blogSettings,
   // collections
   category,
   event,

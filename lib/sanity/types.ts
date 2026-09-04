@@ -104,6 +104,7 @@ export type Post = {
   category?: string;
   readTimeMinutes?: number;
   publishedAt: string;
+  author?: { name: string };
 };
 
 export type HomeQueryResult = {
@@ -189,4 +190,33 @@ export type BusinessBySlugResult = {
   business: Business | null;
   prevBusiness: BusinessNeighbor | null;
   nextBusiness: BusinessNeighbor | null;
+};
+
+export type BlogSettings = {
+  issueLabel?: string;
+  headline?: string;
+  intro?: string;
+  questCountdownEnabled?: boolean;
+  questCountdownTargetDate?: string;
+  questCountdownCtaLabel?: string;
+  topicsHeading?: string;
+  editorsPicksHeading?: string;
+  newsletterTitle?: string;
+  newsletterBody?: string;
+  newsletterPlaceholder?: string;
+  newsletterCtaLabel?: string;
+  newsletterUrl?: string;
+  seo?: Seo;
+};
+
+export type Topic = {
+  label: string;
+  count: number;
+};
+
+export type BlogPageResult = {
+  siteSettings: SiteSettings | null;
+  blogSettings: BlogSettings | null;
+  posts: Post[];
+  editorsPicks: Post[];
 };

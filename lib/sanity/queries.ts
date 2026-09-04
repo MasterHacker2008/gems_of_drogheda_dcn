@@ -2,6 +2,17 @@ import { groq } from "next-sanity";
 
 const seoProjection = groq`{ metaTitle, metaDescription, shareImage }`;
 const linkProjection = groq`{ label, href }`;
+const postProjection = groq`{
+  _id,
+  title,
+  "slug": slug.current,
+  mainImage,
+  excerpt,
+  category,
+  readTimeMinutes,
+  publishedAt,
+  "author": author->{name}
+}`;
 
 export const siteSettingsQuery = groq`*[_type == "siteSettings"][0]{
   siteTitle,
@@ -77,16 +88,33 @@ export const homeQuery = groq`{
     date,
     detail
   },
-  "posts": *[_type == "post"] | order(publishedAt desc)[0...3]{
-    _id,
-    title,
-    "slug": slug.current,
-    mainImage,
-    excerpt,
-    category,
-    readTimeMinutes,
-    publishedAt
-  }
+  "posts": *[_type == "post"] | order(publishedAt desc)[0...3] ${postProjection}
+}`;
+
+export const blogPageQuery = groq`{
+  "siteSettings": *[_type == "siteSettings"][0]{
+    siteTitle,
+    defaultSeo ${seoProjection},
+    registerUrl
+  },
+  "blogSettings": *[_type == "blogSettings"][0]{
+    issueLabel,
+    headline,
+    intro,
+    questCountdownEnabled,
+    questCountdownTargetDate,
+    questCountdownCtaLabel,
+    topicsHeading,
+    editorsPicksHeading,
+    newsletterTitle,
+    newsletterBody,
+    newsletterPlaceholder,
+    newsletterCtaLabel,
+    newsletterUrl,
+    seo ${seoProjection}
+  },
+  "posts": *[_type == "post"] | order(publishedAt desc) ${postProjection},
+  "editorsPicks": *[_type == "blogSettings"][0].editorsPicks[]-> ${postProjection}
 }`;
 
 export const businessSlugsQuery = groq`*[_type == "business" && defined(slug.current)].slug.current`;
