@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
 
-import { BlogMasthead } from "@/components/blog/blog-masthead";
-import { BlogSidebar } from "@/components/blog/blog-sidebar";
-import { LeadStory } from "@/components/blog/lead-story";
-import { StoryGrid } from "@/components/blog/story-grid";
+import { BlogExplorer } from "@/components/blog/blog-explorer";
 import { client } from "@/lib/sanity/client";
 import { urlForImage } from "@/lib/sanity/image";
 import { blogPageQuery } from "@/lib/sanity/queries";
@@ -62,22 +59,15 @@ export default async function BlogPage() {
     );
   }
 
-  const [lead, ...rest] = posts;
-  const secondary = rest.slice(0, 2);
   const topics = computeTopics(posts);
 
   return (
-    <div className="flex w-full flex-col items-center">
-      <BlogMasthead blogSettings={blogSettings} registerUrl={siteSettings?.registerUrl} />
-
-      <div className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-8 px-5 py-10 md:grid-cols-[1.55fr_1fr] md:px-12 md:py-14">
-        <div className="flex flex-col gap-6">
-          <LeadStory post={lead} />
-          <StoryGrid posts={secondary} />
-        </div>
-
-        <BlogSidebar blogSettings={blogSettings} posts={posts} editorsPicks={editorsPicks} topics={topics} />
-      </div>
-    </div>
+    <BlogExplorer
+      blogSettings={blogSettings}
+      registerUrl={siteSettings?.registerUrl}
+      posts={posts}
+      editorsPicks={editorsPicks}
+      topics={topics}
+    />
   );
 }

@@ -8,9 +8,18 @@ type BlogSidebarProps = {
   posts: Post[];
   editorsPicks: Post[];
   topics: Topic[];
+  activeTopic?: string | null;
+  onTopicToggle?: (label: string) => void;
 };
 
-export function BlogSidebar({ blogSettings, posts, editorsPicks, topics }: BlogSidebarProps) {
+export function BlogSidebar({
+  blogSettings,
+  posts,
+  editorsPicks,
+  topics,
+  activeTopic,
+  onTopicToggle,
+}: BlogSidebarProps) {
   return (
     <aside className="flex flex-col gap-4">
       <div className="rounded-[1.375rem] border border-border bg-background p-5">
@@ -21,7 +30,12 @@ export function BlogSidebar({ blogSettings, posts, editorsPicks, topics }: BlogS
         />
       </div>
 
-      <TopicsCard heading={blogSettings?.topicsHeading} topics={topics} />
+      <TopicsCard
+        heading={blogSettings?.topicsHeading}
+        topics={topics}
+        activeTopic={activeTopic}
+        onToggle={onTopicToggle}
+      />
 
       {blogSettings ? <NewsletterCard blogSettings={blogSettings} /> : null}
     </aside>
