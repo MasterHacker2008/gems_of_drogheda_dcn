@@ -147,6 +147,8 @@ export type BusinessAuthor = {
   name: string;
 };
 
+export type BusinessTier = "gem-verified" | "campaign-sponsor" | "directory-listed";
+
 export type Business = {
   name: string;
   displayName: string;
@@ -155,7 +157,13 @@ export type Business = {
   order: number;
   accentColor: string;
   tagline?: string;
+  cardBlurb?: string;
   isMember?: boolean;
+  tier: BusinessTier;
+  avatarImage?: SanityImage;
+  followerCount?: number;
+  questVisitCount?: number;
+  journalFeatureCount?: number;
   badges?: string[];
   listedDate?: string;
   author?: BusinessAuthor;
@@ -219,4 +227,46 @@ export type BlogPageResult = {
   blogSettings: BlogSettings | null;
   posts: Post[];
   editorsPicks: Post[];
+};
+
+export type DirectorySettings = {
+  kicker?: string;
+  headline?: string;
+  searchPlaceholder?: string;
+  featureCtaLabel?: string;
+  registerInterestText?: string;
+  registerInterestCtaLabel?: string;
+  seo?: Seo;
+};
+
+export type DirectoryCategory = {
+  _id: string;
+  name: string;
+  slug: string;
+  count: number;
+};
+
+export type DirectoryBusiness = {
+  name: string;
+  slug: string;
+  trade: string;
+  tier: BusinessTier;
+  order: number;
+  tagline?: string;
+  cardBlurb?: string;
+  avatarImage?: SanityImage;
+  heroImage?: SanityImage;
+  areaLinks?: Link;
+  categories?: BusinessCategory[];
+  badges?: string[];
+  followerCount?: number;
+  questVisitCount?: number;
+  journalFeatureCount?: number;
+};
+
+export type DirectoryPageResult = {
+  siteSettings: SiteSettings | null;
+  directorySettings: DirectorySettings | null;
+  businesses: DirectoryBusiness[];
+  categories: DirectoryCategory[];
 };

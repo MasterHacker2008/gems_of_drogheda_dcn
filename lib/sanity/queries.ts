@@ -128,7 +128,13 @@ export const businessBySlugQuery = groq`{
     order,
     accentColor,
     tagline,
+    cardBlurb,
     isMember,
+    tier,
+    avatarImage,
+    followerCount,
+    questVisitCount,
+    journalFeatureCount,
     badges,
     listedDate,
     "author": author->{name},
@@ -160,5 +166,45 @@ export const businessBySlugQuery = groq`{
   "nextBusiness": *[_type == "business" && order > *[_type == "business" && slug.current == $slug][0].order] | order(order asc)[0]{
     name,
     "slug": slug.current
+  }
+}`;
+
+export const directoryPageQuery = groq`{
+  "siteSettings": *[_type == "siteSettings"][0]{
+    siteTitle,
+    defaultSeo ${seoProjection},
+    joinCtaHref
+  },
+  "directorySettings": *[_type == "directorySettings"][0]{
+    kicker,
+    headline,
+    searchPlaceholder,
+    featureCtaLabel,
+    registerInterestText,
+    registerInterestCtaLabel,
+    seo ${seoProjection}
+  },
+  "businesses": *[_type == "business"] | order(order asc){
+    name,
+    "slug": slug.current,
+    trade,
+    tier,
+    order,
+    tagline,
+    cardBlurb,
+    avatarImage,
+    heroImage,
+    areaLinks[0] ${linkProjection},
+    "categories": categories[]->{_id, name, "slug": slug.current},
+    badges,
+    followerCount,
+    questVisitCount,
+    journalFeatureCount
+  },
+  "categories": *[_type == "category"] | order(name asc){
+    _id,
+    name,
+    "slug": slug.current,
+    "count": count(*[_type == "business" && references(^._id)])
   }
 }`;
