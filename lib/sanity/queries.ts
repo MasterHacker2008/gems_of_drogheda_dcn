@@ -169,6 +169,71 @@ export const businessBySlugQuery = groq`{
   }
 }`;
 
+export const postSlugsQuery = groq`*[_type == "post" && defined(slug.current)].slug.current`;
+
+export const postBySlugQuery = groq`{
+  "post": *[_type == "post" && slug.current == $slug][0]{
+    title,
+    "slug": slug.current,
+    mainImage,
+    excerpt,
+    category,
+    readTimeMinutes,
+    publishedAt,
+    "author": author->{name, bio, avatar},
+    "relatedBusiness": relatedBusiness->{
+      name,
+      "slug": slug.current,
+      trade,
+      order,
+      avatarImage,
+      heroImage,
+      areaLinks[0] ${linkProjection},
+      followerCount,
+      questVisitCount,
+      "categories": categories[]->{_id, name, "slug": slug.current}
+    },
+    tags[] ${linkProjection},
+    body[]{
+      ...,
+      _type == "calloutBox" => {eyebrow, text, footerText, ctaLabel, ctaHref},
+      _type == "statGrid" => {stats[]{value, label}}
+    },
+    seo ${seoProjection}
+  },
+  "blogSettings": *[_type == "blogSettings"][0]{
+    issueLabel,
+    headline,
+    intro,
+    questCountdownEnabled,
+    questCountdownTargetDate,
+    questCountdownCtaLabel,
+    newsletterTitle,
+    newsletterBody,
+    newsletterPlaceholder,
+    newsletterCtaLabel,
+    newsletterUrl,
+    seo ${seoProjection}
+  },
+  "siteSettings": *[_type == "siteSettings"][0]{
+    siteTitle,
+    defaultSeo ${seoProjection},
+    registerUrl
+  },
+  "nearbyBusinesses": *[
+    _type == "business"
+    && _id != *[_type == "post" && slug.current == $slug][0].relatedBusiness._ref
+    && count((categories[]._ref)[@ in *[_type == "post" && slug.current == $slug][0].relatedBusiness->categories[]._ref]) > 0
+  ][0...2]{
+    name,
+    "slug": slug.current,
+    trade
+  },
+  "moreStories": *[_type == "post" && slug.current != $slug] | order(publishedAt desc)[0...3] ${postProjection},
+  "totalPostCount": count(*[_type == "post"]),
+  "authorPostCount": count(*[_type == "post" && author._ref == *[_type == "post" && slug.current == $slug][0].author._ref])
+}`;
+
 export const directoryPageQuery = groq`{
   "siteSettings": *[_type == "siteSettings"][0]{
     siteTitle,
