@@ -297,6 +297,113 @@ export type ArticlePageResult = {
   authorPostCount: number;
 };
 
+export type EventFactCard = {
+  _key: string;
+  label: string;
+  value: string;
+  note?: string;
+};
+
+export type EventStep = {
+  _key: string;
+  title: string;
+  body: string;
+  meta?: string;
+};
+
+export type EventReason = {
+  _key: string;
+  title: string;
+  body: string;
+};
+
+export type EventFaqItem = {
+  _key: string;
+  q: string;
+  a: string;
+};
+
+export type EventClue = {
+  _key: string;
+  tag: string;
+  text: string;
+  answer: string;
+};
+
+export type EventCheckpoint = {
+  _key: string;
+  title: string;
+  body: string;
+};
+
+export type EventPrize = {
+  _key: string;
+  name: string;
+  prize: string;
+};
+
+export type EventFeaturedBusiness = {
+  name: string;
+  slug: string;
+  trade: string;
+  cardBlurb?: string;
+  tagline?: string;
+  heroImage?: SanityImage;
+  categories?: BusinessCategory[];
+};
+
+export type Event = {
+  title: string;
+  slug: string;
+  date: string;
+  detail?: string;
+  kicker?: string;
+  feeLabel?: string;
+  heroHeadline?: string;
+  heroHighlight?: string;
+  subtitle?: string;
+  heroImage?: SanityImage;
+  registerUrl?: string;
+  registerCtaLabel?: string;
+  secondaryCta?: Link;
+  countdownEnabled?: boolean;
+  poweredByLabel?: string;
+  poweredByPartners?: string[];
+  essentials?: EventFactCard[];
+  aboutEyebrow?: string;
+  aboutTitle?: string;
+  aboutBody?: PortableTextBlock[];
+  aboutImage?: SanityImage;
+  aboutTags?: string[];
+  stepsHeading?: string;
+  stepsSubheading?: string;
+  steps?: EventStep[];
+  practiceCluesEnabled?: boolean;
+  practiceClues?: EventClue[];
+  featuredBusinessesHeading?: string;
+  featuredBusinesses?: EventFeaturedBusiness[];
+  reasons?: EventReason[];
+  prizesHeading?: string;
+  prizeTally?: string;
+  prizesIntro?: string;
+  prizes?: EventPrize[];
+  trailEnabled?: boolean;
+  checkpoints?: EventCheckpoint[];
+  registrationEnabled?: boolean;
+  registrationCategories?: string[];
+  pricePerTeam?: number;
+  minTeamSize?: number;
+  maxTeamSize?: number;
+  faqs?: EventFaqItem[];
+  closingMarqueeText?: string;
+  seo?: Seo;
+};
+
+export type EventPageResult = {
+  siteSettings: SiteSettings | null;
+  event: Event | null;
+};
+
 export type DirectorySettings = {
   kicker?: string;
   headline?: string;
