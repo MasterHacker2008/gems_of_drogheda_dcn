@@ -1,19 +1,11 @@
 import { PillButton } from "@/components/ui/pill-button";
+import { daysUntil } from "@/lib/date";
 import type { BlogSettings } from "@/lib/sanity/types";
 
 type BlogMastheadProps = {
   blogSettings: BlogSettings | null;
   registerUrl?: string;
 };
-
-function daysUntil(targetIso?: string) {
-  if (!targetIso) return null;
-  const target = new Date(targetIso);
-  const now = new Date();
-  const msPerDay = 1000 * 60 * 60 * 24;
-  const days = Math.ceil((target.getTime() - now.getTime()) / msPerDay);
-  return { days, target };
-}
 
 export function BlogMasthead({ blogSettings, registerUrl }: BlogMastheadProps) {
   if (!blogSettings) return null;

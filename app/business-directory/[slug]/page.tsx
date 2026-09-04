@@ -41,10 +41,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   if (!business) return {};
 
-  const seo = business.seo?.metaTitle ? business.seo : siteSettings?.defaultSeo;
-  const title = seo?.metaTitle ?? `${business.name} · Business Directory`;
-  const description = seo?.metaDescription ?? business.tagline;
-  const shareImage = seo?.shareImage ?? business.heroImage;
+  const title = business.seo?.metaTitle ?? `${business.name} · Business Directory`;
+  const description = business.seo?.metaDescription ?? business.tagline ?? siteSettings?.defaultSeo?.metaDescription;
+  const shareImage = business.seo?.shareImage ?? business.heroImage ?? siteSettings?.defaultSeo?.shareImage;
   const shareImageUrl = shareImage ? urlForImage(shareImage).width(1200).height(630).url() : undefined;
 
   return {
