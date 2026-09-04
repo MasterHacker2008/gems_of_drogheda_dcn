@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 
 import { BusinessProfileCard } from "@/components/directory/business-profile-card";
+import { SearchBar } from "@/components/ui/search-bar";
 import type { DirectoryBusiness, DirectoryCategory, DirectorySettings } from "@/lib/sanity/types";
 
 type DirectoryExplorerProps = {
@@ -96,29 +97,12 @@ export function DirectoryExplorer({
           </div>
 
           <div className="flex flex-wrap items-center gap-3">
-            <div className="flex min-w-[260px] flex-1 items-center gap-3 whitespace-nowrap rounded-full border border-background/20 bg-background/[.08] px-5 py-3.5">
-              <svg
-                width={17}
-                height={17}
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="#F5BC60"
-                strokeWidth={2.75}
-                strokeLinecap="round"
-                aria-hidden
-                className="flex-none"
-              >
-                <circle cx={11} cy={11} r={7} />
-                <path d="m20 20-3.5-3.5" />
-              </svg>
-              <input
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                placeholder={directorySettings?.searchPlaceholder ?? "Search by name, street or trade"}
-                aria-label="Search the directory"
-                className="flex-1 border-0 bg-transparent text-[15px] text-background placeholder:text-background/45 focus:outline-none"
-              />
-            </div>
+            <SearchBar
+              value={query}
+              onChange={setQuery}
+              placeholder={directorySettings?.searchPlaceholder ?? "Search by name, street or trade"}
+              ariaLabel="Search the directory"
+            />
             {joinCtaHref && featureCtaLabel ? (
               <a
                 href={joinCtaHref}

@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { BlogGrid } from "@/components/home/blog-grid";
 import { CategoryChips } from "@/components/home/category-chips";
 import { EventsList } from "@/components/home/events-list";
+import { FeaturedBusinesses } from "@/components/home/featured-businesses";
 import { Hero } from "@/components/home/hero";
 import { JoinBand } from "@/components/home/join-band";
 import { Marquee } from "@/components/home/marquee";
@@ -44,7 +45,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Home() {
-  const { siteSettings, homePage, categories, events, posts } = await getHomeData();
+  const { siteSettings, homePage, categories, events, posts, featuredBusinesses } = await getHomeData();
 
   if (!homePage || !siteSettings) {
     return (
@@ -58,6 +59,7 @@ export default async function Home() {
     <div className="flex w-full flex-col items-center">
       <Hero homePage={homePage} />
       <CategoryChips homePage={homePage} categories={categories} />
+      <FeaturedBusinesses businesses={featuredBusinesses} joinCtaHref={siteSettings.joinCtaHref} />
       <QuestBand homePage={homePage} registerUrl={siteSettings.registerUrl} />
       <EventsList homePage={homePage} events={events} />
       <JoinBand homePage={homePage} />

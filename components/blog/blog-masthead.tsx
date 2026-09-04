@@ -1,13 +1,16 @@
 import { PillButton } from "@/components/ui/pill-button";
+import { SearchBar } from "@/components/ui/search-bar";
 import { daysUntil } from "@/lib/date";
 import type { BlogSettings } from "@/lib/sanity/types";
 
 type BlogMastheadProps = {
   blogSettings: BlogSettings | null;
   registerUrl?: string;
+  searchQuery: string;
+  onSearchChange: (value: string) => void;
 };
 
-export function BlogMasthead({ blogSettings, registerUrl }: BlogMastheadProps) {
+export function BlogMasthead({ blogSettings, registerUrl, searchQuery, onSearchChange }: BlogMastheadProps) {
   if (!blogSettings) return null;
 
   const countdown =
@@ -60,6 +63,16 @@ export function BlogMasthead({ blogSettings, registerUrl }: BlogMastheadProps) {
             ) : null}
           </div>
         ) : null}
+      </div>
+
+      <div className="mx-auto max-w-7xl px-5 pb-9 md:px-12">
+        <SearchBar
+          value={searchQuery}
+          onChange={onSearchChange}
+          placeholder="Search the Journal by title or topic"
+          ariaLabel="Search the Journal"
+          className="max-w-md"
+        />
       </div>
     </section>
   );

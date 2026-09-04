@@ -113,6 +113,7 @@ export type HomeQueryResult = {
   categories: Category[];
   events: EventItem[];
   posts: Post[];
+  featuredBusinesses: DirectoryBusiness[];
 };
 
 export type PortableTextBlock = {
