@@ -234,6 +234,69 @@ export const postBySlugQuery = groq`{
   "authorPostCount": count(*[_type == "post" && author._ref == *[_type == "post" && slug.current == $slug][0].author._ref])
 }`;
 
+export const eventSlugsQuery = groq`*[_type == "event" && defined(slug.current)].slug.current`;
+
+export const eventBySlugQuery = groq`{
+  "event": *[_type == "event" && slug.current == $slug][0]{
+    title,
+    "slug": slug.current,
+    date,
+    detail,
+    kicker,
+    feeLabel,
+    heroHeadline,
+    heroHighlight,
+    subtitle,
+    heroImage,
+    registerUrl,
+    registerCtaLabel,
+    secondaryCta ${linkProjection},
+    countdownEnabled,
+    poweredByLabel,
+    poweredByPartners,
+    essentials[]{_key, label, value, note},
+    aboutEyebrow,
+    aboutTitle,
+    aboutBody,
+    aboutImage,
+    aboutTags,
+    stepsHeading,
+    stepsSubheading,
+    steps[]{_key, title, body, meta},
+    practiceCluesEnabled,
+    practiceClues[]{_key, tag, text, answer},
+    featuredBusinessesHeading,
+    "featuredBusinesses": featuredBusinesses[]->{
+      name,
+      "slug": slug.current,
+      trade,
+      cardBlurb,
+      tagline,
+      heroImage,
+      "categories": categories[]->{_id, name, "slug": slug.current}
+    },
+    reasons[]{_key, title, body},
+    prizesHeading,
+    prizeTally,
+    prizesIntro,
+    prizes[]{_key, name, prize},
+    trailEnabled,
+    checkpoints[]{_key, title, body},
+    registrationEnabled,
+    registrationCategories,
+    pricePerTeam,
+    minTeamSize,
+    maxTeamSize,
+    faqs[]{_key, q, a},
+    closingMarqueeText,
+    seo ${seoProjection}
+  },
+  "siteSettings": *[_type == "siteSettings"][0]{
+    siteTitle,
+    defaultSeo ${seoProjection}
+  }
+}`;
+
 export const directoryPageQuery = groq`{
   "siteSettings": *[_type == "siteSettings"][0]{
     siteTitle,

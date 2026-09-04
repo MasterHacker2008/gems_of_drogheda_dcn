@@ -37,10 +37,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   if (!post) return {};
 
-  const seo = post.seo?.metaTitle ? post.seo : blogSettings?.seo?.metaTitle ? blogSettings.seo : siteSettings?.defaultSeo;
-  const title = seo?.metaTitle ?? post.title;
-  const description = seo?.metaDescription ?? post.excerpt;
-  const shareImage = seo?.shareImage ?? post.mainImage;
+  const title = post.seo?.metaTitle ?? post.title;
+  const description =
+    post.seo?.metaDescription ?? post.excerpt ?? blogSettings?.seo?.metaDescription ?? siteSettings?.defaultSeo?.metaDescription;
+  const shareImage = post.seo?.shareImage ?? post.mainImage ?? blogSettings?.seo?.shareImage ?? siteSettings?.defaultSeo?.shareImage;
   const shareImageUrl = shareImage ? urlForImage(shareImage).width(1200).height(630).url() : undefined;
 
   return {
