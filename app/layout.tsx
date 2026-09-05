@@ -7,6 +7,7 @@ import { SiteHeader } from "@/components/site/site-header";
 import { client } from "@/lib/sanity/client";
 import { siteSettingsQuery } from "@/lib/sanity/queries";
 import type { SiteSettings } from "@/lib/sanity/types";
+import { siteUrl } from "@/lib/site";
 
 const publicSans = Public_Sans({
   subsets: ["latin"],
@@ -21,7 +22,7 @@ const figtree = Figtree({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.gemsofdrogheda.com"),
+  metadataBase: new URL(siteUrl),
   title: {
     default: "Gems of Drogheda",
     template: "%s · Gems of Drogheda",

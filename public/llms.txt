@@ -1,0 +1,19 @@
+# Gems of Drogheda
+
+> The Drogheda business directory and community quest — profiles of local shops, cafés and trades, editorial stories from the town, and the Gems of Drogheda Quest, a town-wide treasure hunt.
+
+## Directory
+
+- [Business directory](https://gemsofdrogheda.com/business-directory): Every listed gem, browsable by category and searchable by name, street or trade. Each business has its own profile page with locations, hours, and what makes it worth a visit.
+
+## Journal
+
+- [The Journal](https://gemsofdrogheda.com/blog): Editorial stories, gem profiles and quest dispatches from Drogheda City Now, searchable and filterable by topic.
+
+## Quest
+
+- [Gems of Drogheda Quest](https://gemsofdrogheda.com/events/gems-of-drogheda-quest): The town-wide treasure hunt — how it works, prizes, featured businesses, and team registration.
+
+## Optional
+
+- [Sitemap](https://gemsofdrogheda.com/sitemap.xml): Full machine-readable list of every indexed page.
