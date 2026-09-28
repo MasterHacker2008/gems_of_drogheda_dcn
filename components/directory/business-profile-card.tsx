@@ -25,19 +25,16 @@ const TIER_CONFIG = {
     cornerLabel: (order: number) => `Gem ${String(order).padStart(2, "0")}`,
     ring: "border-[#C9B994]",
     tick: { top: "fill-secondary", side: "fill-[#3D2606]" },
-    followVariant: "bg-secondary text-secondary-foreground",
   },
   "campaign-sponsor": {
     cornerLabel: (order: number) => `Gem ${String(order).padStart(2, "0")} · Sponsor`,
     ring: "border-[#C9B994]",
     tick: { top: "fill-primary", side: "fill-background" },
-    followVariant: "bg-secondary text-secondary-foreground",
   },
   "directory-listed": {
     cornerLabel: null,
     ring: "border-dashed border-[#C9B994]",
     tick: null,
-    followVariant: "border border-[#C9B994] bg-background text-foreground",
   },
 } as const;
 
@@ -45,8 +42,7 @@ export function BusinessProfileCard({ business, joinCtaHref }: BusinessProfileCa
   const config = TIER_CONFIG[business.tier];
   const street = business.areaLinks?.label;
   const blurb = business.cardBlurb ?? business.tagline;
-  const hasStats =
-    business.followerCount != null || business.questVisitCount != null || business.journalFeatureCount != null;
+  const hasStats = business.questVisitCount != null || business.journalFeatureCount != null;
   const showUpsell = business.tier === "directory-listed";
 
   return (
@@ -76,7 +72,7 @@ export function BusinessProfileCard({ business, joinCtaHref }: BusinessProfileCa
       </div>
 
       <div className="flex flex-col gap-3 px-5 pb-5">
-        <div className="-mt-[30px] flex items-end justify-between gap-3">
+        <div className="-mt-[30px] flex items-end gap-3">
           <span className="relative z-[1] h-[66px] w-[66px] flex-none overflow-hidden rounded-[1.25rem] border-[3px] border-background bg-muted">
             {business.avatarImage ? (
               <Image
@@ -91,11 +87,6 @@ export function BusinessProfileCard({ business, joinCtaHref }: BusinessProfileCa
                 {initials(business.name)}
               </span>
             )}
-          </span>
-          <span
-            className={`inline-flex flex-none items-center whitespace-nowrap rounded-full px-4 py-2 font-heading text-xs font-bold ${config.followVariant}`}
-          >
-            Follow
           </span>
         </div>
 
@@ -140,14 +131,6 @@ export function BusinessProfileCard({ business, joinCtaHref }: BusinessProfileCa
           <>
             {hasStats ? (
               <div className="flex gap-4 border-y border-border py-2.5">
-                {business.followerCount != null ? (
-                  <span className="flex flex-col">
-                    <strong className="font-heading text-base text-foreground">
-                      {business.followerCount >= 1000 ? `${(business.followerCount / 1000).toFixed(1)}k` : business.followerCount}
-                    </strong>
-                    <span className="text-[11px] text-muted-foreground">followers</span>
-                  </span>
-                ) : null}
                 {business.questVisitCount != null ? (
                   <span className="flex flex-col">
                     <strong className="font-heading text-base text-foreground">{business.questVisitCount}</strong>

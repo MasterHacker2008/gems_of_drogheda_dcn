@@ -90,14 +90,6 @@ export const business = defineType({
       group: 'hero',
     }),
     defineField({
-      name: 'followerCount',
-      title: 'Follower count',
-      type: 'number',
-      description: 'Editorial placeholder stat for the directory card, pending real social/analytics integration.',
-      group: 'hero',
-      validation: (Rule) => Rule.min(0),
-    }),
-    defineField({
       name: 'questVisitCount',
       title: 'Quest visit count',
       type: 'number',

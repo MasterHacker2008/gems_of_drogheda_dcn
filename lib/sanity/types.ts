@@ -162,7 +162,6 @@ export type Business = {
   isMember?: boolean;
   tier: BusinessTier;
   avatarImage?: SanityImage;
-  followerCount?: number;
   questVisitCount?: number;
   journalFeatureCount?: number;
   badges?: string[];
@@ -262,7 +261,6 @@ export type ArticleRelatedBusiness = {
   avatarImage?: SanityImage;
   heroImage?: SanityImage;
   areaLinks?: Link;
-  followerCount?: number;
   questVisitCount?: number;
   categories?: BusinessCategory[];
 };
@@ -435,7 +433,6 @@ export type DirectoryBusiness = {
   areaLinks?: Link;
   categories?: BusinessCategory[];
   badges?: string[];
-  followerCount?: number;
   questVisitCount?: number;
   journalFeatureCount?: number;
 };
@@ -445,4 +442,89 @@ export type DirectoryPageResult = {
   directorySettings: DirectorySettings | null;
   businesses: DirectoryBusiness[];
   categories: DirectoryCategory[];
+};
+
+export type PersonFact = {
+  label: string;
+  value: string;
+};
+
+export type PersonQa = {
+  question: string;
+  answer: string;
+};
+
+export type PersonTimelineEntry = {
+  year: string;
+  body: string;
+};
+
+export type PersonPlace = {
+  name: string;
+  when: string;
+};
+
+export type Person = {
+  name: string;
+  slug: string;
+  eyebrow?: string;
+  area?: string;
+  heroFirstName: string;
+  heroLastName: string;
+  tagline?: string;
+  portraitImage?: SanityImage;
+  featuredDate?: string;
+  marqueeTags?: string[];
+  statValue?: string;
+  statCaption?: string;
+  facts?: PersonFact[];
+  leadIn?: string;
+  leadHighlight?: string;
+  storyParagraphs?: string[];
+  galleryMainImage?: SanityImage;
+  galleryMainCaption?: string;
+  quote?: string;
+  gallerySideImage?: SanityImage;
+  qaHeading?: string;
+  qaItems?: PersonQa[];
+  timelineHeadingLine1?: string;
+  timelineHeadingLine2?: string;
+  timelineEntries?: PersonTimelineEntry[];
+  ctaImage?: SanityImage;
+  placesHeading?: string;
+  places?: PersonPlace[];
+  ctaHeading?: string;
+  ctaBody?: string;
+  nominateHref?: string;
+  moreHref?: string;
+  seo?: Seo;
+};
+
+export type PersonBySlugResult = {
+  siteSettings: SiteSettings | null;
+  person: Person | null;
+};
+
+export type PersonTier = "featured" | "journal" | "nominated";
+
+export type DirectoryPerson = {
+  name: string;
+  slug: string;
+  order: number;
+  tier: PersonTier;
+  category: string;
+  role: string;
+  handle?: string;
+  area?: string;
+  tagline?: string;
+  cardLine?: string;
+  cardTags?: string[];
+  portraitImage?: SanityImage;
+  cardCoverImage?: SanityImage;
+  featuredDate?: string;
+};
+
+export type PeopleDirectoryPageResult = {
+  siteSettings: SiteSettings | null;
+  people: DirectoryPerson[];
 };

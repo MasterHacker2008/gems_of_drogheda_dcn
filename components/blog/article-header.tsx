@@ -98,20 +98,10 @@ export function ArticleHeader({ article }: ArticleHeaderProps) {
               </span>
             </div>
           </div>
-          {business.followerCount != null || business.questVisitCount != null ? (
+          {business.questVisitCount != null ? (
             <>
               <div className="h-px bg-background/14" />
               <div className="flex gap-5">
-                {business.followerCount != null ? (
-                  <span className="flex flex-col">
-                    <strong className="font-heading text-base text-background">
-                      {business.followerCount >= 1000
-                        ? `${(business.followerCount / 1000).toFixed(1)}k`
-                        : business.followerCount}
-                    </strong>
-                    <span className="text-[11px] text-background/55">followers</span>
-                  </span>
-                ) : null}
                 {business.questVisitCount != null ? (
                   <span className="flex flex-col">
                     <strong className="font-heading text-base text-background">{business.questVisitCount}</strong>
