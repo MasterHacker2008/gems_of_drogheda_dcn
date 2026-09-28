@@ -26,9 +26,24 @@ const directoryBusinessProjection = groq`{
   areaLinks[0] ${linkProjection},
   "categories": categories[]->{_id, name, "slug": slug.current},
   badges,
-  followerCount,
   questVisitCount,
   journalFeatureCount
+}`;
+const directoryPersonProjection = groq`{
+  name,
+  "slug": slug.current,
+  order,
+  tier,
+  category,
+  role,
+  handle,
+  area,
+  tagline,
+  cardLine,
+  cardTags,
+  portraitImage,
+  cardCoverImage,
+  featuredDate
 }`;
 
 export const siteSettingsQuery = groq`*[_type == "siteSettings"][0]{
@@ -150,7 +165,6 @@ export const businessBySlugQuery = groq`{
     isMember,
     tier,
     avatarImage,
-    followerCount,
     questVisitCount,
     journalFeatureCount,
     badges,
@@ -207,7 +221,6 @@ export const postBySlugQuery = groq`{
       avatarImage,
       heroImage,
       areaLinks[0] ${linkProjection},
-      followerCount,
       questVisitCount,
       "categories": categories[]->{_id, name, "slug": slug.current}
     },
@@ -337,4 +350,57 @@ export const directoryPageQuery = groq`{
     "slug": slug.current,
     "count": count(*[_type == "business" && references(^._id)])
   }
+}`;
+
+export const personSlugsQuery = groq`*[_type == "person" && defined(slug.current)].slug.current`;
+
+export const personBySlugQuery = groq`{
+  "person": *[_type == "person" && slug.current == $slug][0]{
+    name,
+    "slug": slug.current,
+    eyebrow,
+    area,
+    heroFirstName,
+    heroLastName,
+    tagline,
+    portraitImage,
+    featuredDate,
+    marqueeTags,
+    statValue,
+    statCaption,
+    facts[]{_key, label, value},
+    leadIn,
+    leadHighlight,
+    storyParagraphs,
+    galleryMainImage,
+    galleryMainCaption,
+    quote,
+    gallerySideImage,
+    qaHeading,
+    qaItems[]{_key, question, answer},
+    timelineHeadingLine1,
+    timelineHeadingLine2,
+    timelineEntries[]{_key, year, body},
+    ctaImage,
+    placesHeading,
+    places[]{_key, name, when},
+    ctaHeading,
+    ctaBody,
+    nominateHref,
+    moreHref,
+    seo ${seoProjection}
+  },
+  "siteSettings": *[_type == "siteSettings"][0]{
+    siteTitle,
+    defaultSeo ${seoProjection}
+  }
+}`;
+
+export const peopleDirectoryQuery = groq`{
+  "siteSettings": *[_type == "siteSettings"][0]{
+    siteTitle,
+    defaultSeo ${seoProjection},
+    joinCtaHref
+  },
+  "people": *[_type == "person"] | order(order asc) ${directoryPersonProjection}
 }`;

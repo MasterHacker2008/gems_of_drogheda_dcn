@@ -10,9 +10,11 @@ import {calloutBox} from './objects/calloutBox'
 import {eventFactCard, eventFaq, eventReason, eventStep} from './objects/eventCards'
 import {eventCheckpoint, eventClue, eventPrize} from './objects/eventQuestModules'
 import {link} from './objects/link'
+import {personFact, personPlace, personQa, personTimelineEntry} from './objects/personCards'
 import {sellItem} from './objects/sellItem'
 import {seo} from './objects/seo'
 import {statGrid} from './objects/statGrid'
+import {person} from './person'
 import {post} from './post'
 import {siteSettings} from './siteSettings'
 
@@ -31,6 +33,10 @@ export const schemaTypes = [
   eventClue,
   eventCheckpoint,
   eventPrize,
+  personFact,
+  personQa,
+  personTimelineEntry,
+  personPlace,
   // singletons
   siteSettings,
   homePage,
@@ -42,4 +48,5 @@ export const schemaTypes = [
   author,
   post,
   business,
+  person,
 ]
