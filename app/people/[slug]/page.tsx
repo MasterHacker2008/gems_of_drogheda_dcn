@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
+import { PersonBusinessCard } from "@/components/person/person-business-card";
 import { PersonCta } from "@/components/person/person-cta";
 import { PersonHero } from "@/components/person/person-hero";
 import { PersonMarqueeBanner } from "@/components/person/person-marquee-banner";
 import { PersonPhotoGrid } from "@/components/person/person-photo-grid";
+import { PersonProfileCard } from "@/components/person/person-profile-card";
 import { PersonQaStrip } from "@/components/person/person-qa-strip";
 import { PersonStory } from "@/components/person/person-story";
 import { PersonTimeline } from "@/components/person/person-timeline";
+import { PersonVideo } from "@/components/person/person-video";
 import { client } from "@/lib/sanity/client";
 import { urlForImage } from "@/lib/sanity/image";
 import { personBySlugQuery, personSlugsQuery } from "@/lib/sanity/queries";
@@ -64,13 +67,14 @@ export default async function PersonFeaturePage({ params }: PageProps) {
   if (!person) notFound();
 
   return (
-    <div className="w-full">
+    <div className="w-full pb-16 md:pb-24">
       <PersonHero
         eyebrow={person.eyebrow ?? "Featured person"}
         area={person.area ?? ""}
         firstName={person.heroFirstName}
         lastName={person.heroLastName}
         tagline={person.tagline ?? ""}
+        tags={person.cardTags}
         portraitImage={person.portraitImage}
         portraitAlt={`Portrait of ${person.name}`}
       />
@@ -91,12 +95,31 @@ export default async function PersonFeaturePage({ params }: PageProps) {
         sideImage={person.gallerySideImage}
         sideImageAlt={person.name}
       />
+      <PersonVideo
+        heading={person.videoHeading}
+        caption={person.videoCaption}
+        videoUrl={person.videoUrl}
+        videoFileUrl={person.videoFileUrl}
+        poster={person.videoPoster}
+        title={`Interview with ${person.name}`}
+      />
       <PersonQaStrip heading={person.qaHeading} items={person.qaItems} />
       <PersonTimeline
         headingLine1={person.timelineHeadingLine1}
         headingLine2={person.timelineHeadingLine2}
         entries={person.timelineEntries}
       />
+      <PersonProfileCard
+        name={person.name}
+        handle={person.handle}
+        role={person.role}
+        area={person.area}
+        bio={person.profileBio ?? person.tagline}
+        avatar={person.portraitImage}
+        website={person.website}
+        socialLinks={person.socialLinks}
+      />
+      <PersonBusinessCard business={person.business} personName={person.heroFirstName} role={person.businessRole} />
       <PersonCta
         image={person.ctaImage}
         imageAlt={person.name}

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useState } from "react";
 
 import { BusinessProfileCard } from "@/components/directory/business-profile-card";
@@ -81,6 +82,12 @@ export function DirectoryExplorer({
                   {directorySettings.headline}
                 </h1>
               ) : null}
+              <Link
+                href="/people"
+                className="mt-1 inline-flex w-fit items-center gap-1.5 font-heading text-sm font-bold text-[#F5BC60] hover:text-secondary"
+              >
+                Meet the people behind the businesses <span aria-hidden="true">→</span>
+              </Link>
             </div>
             <div className="flex gap-6">
               <div className="flex flex-col gap-0.5">
@@ -143,7 +150,7 @@ export function DirectoryExplorer({
         </div>
       </section>
 
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-4 px-5 pb-16 pt-9 md:px-12 md:pt-11">
+      <div className="mx-auto flex w-full max-w-7xl flex-col gap-4 px-5 pb-16 pt-9 md:px-12 md:pb-24 md:pt-11">
         <div className="flex flex-wrap gap-2">
           <button
             type="button"

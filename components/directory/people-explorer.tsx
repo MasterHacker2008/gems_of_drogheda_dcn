@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useState } from "react";
 
 import { PersonListingCard } from "@/components/directory/person-listing-card";
@@ -57,6 +58,12 @@ export function PeopleExplorer({ people, joinCtaHref }: PeopleExplorerProps) {
                 The tailors, coaches, bakers and neighbours who keep the town running. A new person is featured each
                 month.
               </p>
+              <Link
+                href="/business-directory"
+                className="mt-1 inline-flex w-fit items-center gap-1.5 font-heading text-sm font-bold text-[#F5BC60] hover:text-secondary"
+              >
+                Browse the business directory <span aria-hidden="true">→</span>
+              </Link>
             </div>
             <div className="flex gap-6">
               <div className="flex flex-col gap-0.5">
@@ -108,7 +115,7 @@ export function PeopleExplorer({ people, joinCtaHref }: PeopleExplorerProps) {
 
       <PersonMarqueeBanner items={marqueeItems} />
 
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-10 px-5 pb-16 pt-12 md:px-12 md:pt-16">
+      <div className="mx-auto flex w-full max-w-7xl flex-col gap-10 px-5 pb-16 pt-12 md:px-12 md:pb-24 md:pt-16">
         {spotlight ? <PersonSpotlightCard person={spotlight} /> : null}
 
         <div className="flex flex-col gap-5">

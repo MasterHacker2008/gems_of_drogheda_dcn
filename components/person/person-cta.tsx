@@ -20,7 +20,7 @@ export function PersonCta({ image, imageAlt, placesHeading, places, ctaHeading, 
   if (!image && !ctaHeading) return null;
 
   return (
-    <section className="mx-auto flex w-full max-w-[1240px] flex-wrap items-stretch gap-6 px-5 py-16 md:gap-12 md:px-12 md:py-24">
+    <section className="mx-auto flex w-full max-w-[1240px] flex-wrap items-stretch gap-6 px-5 pt-16 md:gap-12 md:px-12 md:pt-24">
       <div className="relative min-h-[360px] flex-1 basis-[420px] overflow-hidden rounded-[2rem] bg-[#15707F]">
         {image ? (
           <Image

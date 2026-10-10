@@ -106,7 +106,7 @@ export default async function ArticlePage({ params }: PageProps) {
 
       <ArticleAuthorBand article={post} blogSettings={blogSettings} authorPostCount={authorPostCount} />
 
-      <section className="mx-auto flex w-full max-w-7xl flex-col gap-5 px-5 py-11 md:px-12 md:py-16">
+      <section className="mx-auto flex w-full max-w-7xl flex-col gap-5 px-5 pb-16 pt-11 md:px-12 md:pb-24 md:pt-16">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <h2 className="m-0 font-heading text-[clamp(1.5rem,2.6vw,2rem)] font-semibold tracking-tight text-foreground">
             More from the Journal

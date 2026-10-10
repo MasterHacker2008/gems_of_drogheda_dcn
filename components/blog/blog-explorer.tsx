@@ -48,7 +48,7 @@ export function BlogExplorer({ blogSettings, registerUrl, posts, editorsPicks, t
         onSearchChange={setQuery}
       />
 
-      <div className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-8 px-5 py-10 md:grid-cols-[1.55fr_1fr] md:px-12 md:py-14">
+      <div className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-8 px-5 pb-16 pt-10 md:grid-cols-[1.55fr_1fr] md:px-12 md:pb-24 md:pt-14">
         <div className="flex flex-col gap-6">
           {lead ? (
             <>

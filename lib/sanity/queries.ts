@@ -121,7 +121,8 @@ export const homeQuery = groq`{
     detail
   },
   "posts": *[_type == "post"] | order(publishedAt desc)[0...3] ${postProjection},
-  "featuredBusinesses": *[_type == "business" && tier != "directory-listed"] | order(order asc)[0...4] ${directoryBusinessProjection}
+  "featuredBusinesses": *[_type == "business" && tier != "directory-listed"] | order(order asc)[0...4] ${directoryBusinessProjection},
+  "featuredPeople": *[_type == "person"] | order(order asc)[0...4] ${directoryPersonProjection}
 }`;
 
 export const blogPageQuery = groq`{
@@ -365,7 +366,22 @@ export const personBySlugQuery = groq`{
     tagline,
     portraitImage,
     featuredDate,
+    businessRole,
+    role,
+    handle,
+    profileBio,
+    website,
+    socialLinks[]{_key, label, href},
+    "business": business->{
+      name,
+      "slug": slug.current,
+      trade,
+      cardBlurb,
+      tagline,
+      "area": areaLinks[0].label
+    },
     marqueeTags,
+    cardTags,
     statValue,
     statCaption,
     facts[]{_key, label, value},
@@ -376,6 +392,11 @@ export const personBySlugQuery = groq`{
     galleryMainCaption,
     quote,
     gallerySideImage,
+    videoHeading,
+    videoCaption,
+    videoUrl,
+    "videoFileUrl": videoFile.asset->url,
+    videoPoster,
     qaHeading,
     qaItems[]{_key, question, answer},
     timelineHeadingLine1,

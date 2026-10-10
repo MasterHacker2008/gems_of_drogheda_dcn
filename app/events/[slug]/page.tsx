@@ -90,7 +90,7 @@ export default async function EventPage({ params }: PageProps) {
       {event.trailEnabled ? <EventTrail checkpoints={event.checkpoints} /> : null}
       <EventRegistration event={event} />
       <EventFaqs faqs={event.faqs} />
-      <div className="h-14 md:h-20" />
+      <div className="h-16 md:h-24" />
     </div>
   );
 }
