@@ -43,7 +43,7 @@ export function JoinBand({ homePage }: JoinBandProps) {
           ) : null}
           <div className="flex flex-wrap gap-3 pt-1.5">
             {homePage.joinPrimaryCta ? (
-              <PillButton href={homePage.joinPrimaryCta.href} variant="dark" size="md">
+              <PillButton href="/join" variant="dark" size="md">
                 {homePage.joinPrimaryCta.label}
               </PillButton>
             ) : null}

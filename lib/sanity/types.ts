@@ -114,6 +114,7 @@ export type HomeQueryResult = {
   events: EventItem[];
   posts: Post[];
   featuredBusinesses: DirectoryBusiness[];
+  featuredPeople: DirectoryPerson[];
 };
 
 export type PortableTextBlock = {
@@ -464,9 +465,25 @@ export type PersonPlace = {
   when: string;
 };
 
+export type PersonBusiness = {
+  name: string;
+  slug: string;
+  trade: string;
+  cardBlurb?: string;
+  tagline?: string;
+  area?: string;
+};
+
 export type Person = {
   name: string;
   slug: string;
+  business?: PersonBusiness | null;
+  businessRole?: string;
+  role?: string;
+  handle?: string;
+  profileBio?: string;
+  website?: string;
+  socialLinks?: Link[];
   eyebrow?: string;
   area?: string;
   heroFirstName: string;
@@ -475,6 +492,7 @@ export type Person = {
   portraitImage?: SanityImage;
   featuredDate?: string;
   marqueeTags?: string[];
+  cardTags?: string[];
   statValue?: string;
   statCaption?: string;
   facts?: PersonFact[];
@@ -485,6 +503,11 @@ export type Person = {
   galleryMainCaption?: string;
   quote?: string;
   gallerySideImage?: SanityImage;
+  videoHeading?: string;
+  videoCaption?: string;
+  videoUrl?: string;
+  videoFileUrl?: string;
+  videoPoster?: SanityImage;
   qaHeading?: string;
   qaItems?: PersonQa[];
   timelineHeadingLine1?: string;

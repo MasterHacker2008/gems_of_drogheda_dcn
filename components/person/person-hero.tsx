@@ -10,11 +10,12 @@ type PersonHeroProps = {
   firstName: string;
   lastName: string;
   tagline: string;
+  tags?: string[];
   portraitImage?: SanityImage;
   portraitAlt: string;
 };
 
-export function PersonHero({ eyebrow, area, firstName, lastName, tagline, portraitImage, portraitAlt }: PersonHeroProps) {
+export function PersonHero({ eyebrow, area, firstName, lastName, tagline, tags, portraitImage, portraitAlt }: PersonHeroProps) {
   return (
     <header className="relative w-full overflow-hidden bg-primary px-5 py-9 text-background md:px-12 md:py-16 md:pb-24">
       <div className="pointer-events-none absolute -right-36 -top-40 h-[520px] w-[520px] animate-halo-breathe rounded-full bg-[radial-gradient(circle,hsl(var(--secondary)/0.55),hsl(var(--secondary)/0)_65%)]" />
@@ -40,6 +41,19 @@ export function PersonHero({ eyebrow, area, firstName, lastName, tagline, portra
           <p className="m-0 max-w-[24em] text-pretty text-[clamp(1.125rem,2.1vw,1.375rem)] leading-relaxed">
             {tagline}
           </p>
+
+          {tags && tags.length > 0 ? (
+            <div className="flex flex-wrap gap-2">
+              {tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="rounded-full border border-background/30 bg-background/10 px-3.5 py-1.5 text-[13px] font-semibold text-background"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          ) : null}
         </div>
 
         <div className="relative mx-auto max-w-[480px] flex-1 basis-[360px]">
